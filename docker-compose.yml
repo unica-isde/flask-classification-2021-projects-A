@@ -11,13 +11,11 @@ web:
   volumes:
     - ~/.cache/torch:/root/.cache/torch
 
-
 redisdb:
   image: "redis"
   command: --port 6378
   ports:
     - "6378:6378"
-
 
 worker:
   build: .

@@ -20,12 +20,20 @@ def classifications():
     if form.validate_on_submit():  # POST
         image_id = form.image.data
         model_id = form.model.data
-        # TODO create the result_dict, with a key 'data' that stores
-        #  the output of the classification function
-        result_dict = dict()
+
+        redis_url = Configuration.REDIS_URL
+        redis_conn = redis.from_url(redis_url)
+        with Connection(redis_conn):
+            q = Queue(name=Configuration.QUEUE)
+            job = Job.create(classify_image, kwargs={
+                "model_id": model_id,
+                "img_id": image_id
+            })
+            task = q.enqueue_job(job)
 
         # returns the image classification output from the specified model
-        return render_template('classification_output.html', image_id=image_id, results=result_dict)
+        # return render_template('classification_output.html', image_id=image_id, results=result_dict)
+        return render_template("classification_output_queue.html", image_id=image_id, jobID=task.get_id())
 
     # otherwise, it is a get request and should return the
     # image and model selector
