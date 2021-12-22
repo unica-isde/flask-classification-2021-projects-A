@@ -6,7 +6,7 @@
 Use git to clone the repository:
 
 ```bash
-git clone https://github.com/maurapintor/flask-classification.git
+git clone https://github.com/unica-isde/flask-classification-2021-projects-A
 ```
 
 And install the requirements with 
