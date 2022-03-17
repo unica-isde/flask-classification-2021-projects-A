@@ -16,7 +16,7 @@
         <div class="col">
             <div class="card">
                 <img class="large-front-thumbnail"
-                     src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} " <!-- change path-->
+                     src="{{ url_for('static', filename='image_uploads/'+image_id) }} "
                      alt={{ image_id }}/>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <a class="btn btn-primary" href="/classifications" role="button">Back</a>
+                <a class="btn btn-primary" href="/classifications_image_upload" role="button">Back</a>
             </div>
         </div>
     </div>
