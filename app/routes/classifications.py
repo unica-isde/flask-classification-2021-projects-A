@@ -66,10 +66,40 @@ def showHistogram():
 
         # returns the image classification output from the specified model
         # return render_template('classification_output.html', image_id=image_id, results=result_dict)
-        return render_template("show_histogram.html", image_id=image_id, jobID=task.get_id())
+        histogram_image = plot_png(image_id)
+
+        return render_template("show_histogram.html", histogram_image=histogram_image, image_id=image_id, jobID=task.get_id())
 
     # otherwise, it is a get request and should return the
-    # image and model selector
+    # image  selector
     return render_template('show_histogramform.html', form=form)
 
 
+def plot_png(imageurl):
+    import matplotlib.pyplot as plt
+    import cv2
+    imagepath = "/home/nahom/Documents/flask-classification-2021-projects-A/app/static/imagenet_subset/" + imageurl 
+    
+    import numpy as np
+
+
+    # read image
+    im = cv2.imread(imagepath)
+    # calculate mean value from RGB channels and flatten to 1D array
+    vals = im.mean(axis=2).flatten()
+    # calculate histogram
+    counts, bins = np.histogram(vals, range(257))
+    # plot histogram centered on values 0..255
+    plt.bar(bins[:-1] - 0.5, counts, width=1, edgecolor='none')
+    plt.xlim([-0.5, 255.5])
+    # plt.show()
+    
+    # im = cv2.imread(imagepath)
+    # # calculate mean value from RGB channels and flatten to 1D array
+    # vals = im.mean(axis=2).flatten()
+    # # plot histogram with 255 bins
+    # b, bins, patches = plt.hist(vals, 255)
+    # plt.xlim([0,255])
+    plt.savefig('/home/nahom/Documents/flask-classification-2021-projects-A/app/static/histoimage/'+ imageurl)
+    #plt.show() 
+    return imageurl
