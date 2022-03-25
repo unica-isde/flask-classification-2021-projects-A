@@ -5,6 +5,8 @@ from rq.job import Job
 
 from app import app
 from app.forms.classification_form import ClassificationForm
+from app.forms.classification_form2 import ClassificationForm2
+
 from ml.classification_utils import classify_image
 from config import Configuration
 
@@ -38,3 +40,36 @@ def classifications():
     # otherwise, it is a get request and should return the
     # image and model selector
     return render_template('classification_select.html', form=form)
+
+
+
+
+
+
+@app.route('/showhistogram', methods=['GET', 'POST'])
+def showHistogram():
+    """API for selecting a model and an image and running a 
+    classification job. Returns the output scores from the 
+    model."""
+    form = ClassificationForm2()
+    if form.validate_on_submit():  # POST
+        image_id = form.image.data
+        
+        redis_url = Configuration.REDIS_URL
+        redis_conn = redis.from_url(redis_url)
+        with Connection(redis_conn):
+            q = Queue(name=Configuration.QUEUE)
+            job = Job.create(classify_image, kwargs={
+                "img_id": image_id
+            })
+            task = q.enqueue_job(job)
+
+        # returns the image classification output from the specified model
+        # return render_template('classification_output.html', image_id=image_id, results=result_dict)
+        return render_template("show_histogram.html", image_id=image_id, jobID=task.get_id())
+
+    # otherwise, it is a get request and should return the
+    # image and model selector
+    return render_template('show_histogramform.html', form=form)
+
+
