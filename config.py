@@ -9,6 +9,12 @@ class Configuration:
     # classification
     image_folder_path = os.path.join(project_root, 'app/static/imagenet_subset')
     models = ('resnet18', 'alexnet', 'vgg16', 'inception_v3',)
+    #transformation
+    edit_image_folder_path = os.path.join(project_root, 'app/static/edit_imagenet_subset')
+    default_brightness = 1
+    default_contrast = 1
+    default_saturation = 1
+    default_hue = 0
     # web server
     SECRET_KEY = os.environ.get('SECRET_KEY') or '9cj328s61hsd8'
     # queue
