@@ -26,14 +26,11 @@ def transformations():
 
         save_image(edit_image_id, img)
 
-        print("SUBMIT")
-
-        # returns the image classification output from the specified model
-        # return render_template('classification_output.html', image_id=image_id, results=result_dict)
+        # returns the image transformation output
         return render_template("transformation_output.html", image_id=image_id, edit_image_id=edit_image_id)
 
     # otherwise, it is a get request and should return the
-    # image and model selector
+    # transformation selecter
     return render_template('transformation_select.html', form=form)
 
 """"
