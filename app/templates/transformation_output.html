@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        .large-front-thumbnail {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col">
+            <h1> Transformation </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h4> Original image</h4>
+            <img class="large-front-thumbnail"
+                 src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
+                 alt={{ image_id }}/>
+        </div>
+        <div class="col">
+            <h4> Transformed image </h4>
+            <img class="large-front-thumbnail"
+                 src="{{ url_for('static', filename='edit_imagenet_subset/'+edit_image_id) }} "
+                 alt={{ edit_image_id }}/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-dark mb-2" href="transformations" role="button">Back</a>
+        </div>
+    </div>
+
+{% endblock %}
+
