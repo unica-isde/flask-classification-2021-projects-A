@@ -16,7 +16,7 @@
         <div class="col">
             <div class="card">
                 <img class="large-front-thumbnail"
-                     src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
+                     src="{{ url_for('static', filename='image_uploads/'+image_id) }} "
                      alt={{ image_id }}/>
             </div>
         </div>
@@ -32,13 +32,11 @@
                 </div>
 
 
-                <a class="btn btn-dark" href="/classifications" role="button">Back </a>
+                <a class="btn btn-dark" href="/classifications_image_upload" role="button">Back</a>
             </div>
         </div>
     </div>
     <script src="{{ url_for("static", filename="poll.js") }}" id="polling" jobid={{ jobID }}></script>
 
 {% endblock %}
-
-
 
