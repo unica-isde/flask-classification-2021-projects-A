@@ -6,13 +6,12 @@ from rq import Connection, Queue
 
 from app import app
 from app.utils.make_figure import make_figure
+
 from config import Configuration
 
 config = Configuration()
 
-app.route('/download_plot/<string:job_id>', methods=['GET'])
-
-
+@app.route('/download_plot/<string:job_id>', methods=['GET'])
 def download_plot(job_id=None):
 
     """Returns the plot with the scores"""
