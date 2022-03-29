@@ -59,7 +59,7 @@ def showHistogram():
         image_id = form.image.data
         histogram_image = plot_png(image_id)
 
-        return render_template("show_histogram.html", histogram_image=histogram_image, image_id=image_id, jobID=task.get_id())
+        return render_template("show_histogram.html", histogram_image=histogram_image, image_id=image_id)
 
     # otherwise, it is a get request and should return the
     # image  selector
