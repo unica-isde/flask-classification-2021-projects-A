@@ -1,29 +1,38 @@
-web:
-  build: .
-  command: python runserver.py
-  ports:
-    - "5000:5000"
-  links:
-    - redisdb
-  environment:
-  - REDIS_HOST=redisdb
-  - REDIS_PORT=6378
-  volumes:
-    - ~/.cache/torch:/root/.cache/torch
+version: '3.2'
+services:
 
-redisdb:
-  image: "redis"
-  command: --port 6378
-  ports:
-    - "6378:6378"
+  web:
+    build: .
+    command: python runserver.py
+    ports:
+      - "5000:5000"
+    links:
+      - redisdb
+    environment:
+      - REDIS_HOST=redisdb
+      - REDIS_PORT=6378
+    volumes:
+      - ~/.cache/torch:/root/.cache/torch
+      - data-volume:/app/app/static/image_uploads:z
 
-worker:
-  build: .
-  command: python worker.py
-  links:
-    - redisdb
-  environment:
-  - REDIS_HOST=redisdb
-  - REDIS_PORT=6378
-  volumes:
-    - ~/.cache/torch:/root/.cache/torch
+
+  redisdb:
+    image: "redis"
+    command: --port 6378
+    ports:
+      - "6378:6378"
+
+  worker:
+    build: .
+    command: python worker.py
+    links:
+      - redisdb
+    environment:
+      - REDIS_HOST=redisdb
+      - REDIS_PORT=6378
+    volumes:
+      - ~/.cache/torch:/root/.cache/torch
+      - data-volume:/app/app/static/image_uploads:z
+
+volumes:
+  data-volume:

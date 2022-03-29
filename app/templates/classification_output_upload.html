@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+% extends "base.html" %}
 
 {% block content %}
 
@@ -13,20 +13,15 @@
 
     </style>
     <div class="row">
-        
-        
         <div class="col">
-            
             <div class="card">
                 <img class="large-front-thumbnail"
-                     src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
+                     src="{{ url_for('static', filename='image_uploads/'+image_id) }} "
                      alt={{ image_id }}/>
             </div>
         </div>
         <div class="col">
-
             <div class="card ">
-                
                 <table class="table">
                     <thead>
                     <tr>
@@ -45,9 +40,8 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <a class="btn btn-primary" href="/classifications" role="button">Back </a>
+                <a class="btn btn-primary" href="/classifications_image_upload" role="button">Back</a>
             </div>
         </div>
     </div>
 {% endblock %}
-

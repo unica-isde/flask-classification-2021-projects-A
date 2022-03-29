@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        .large-front-thumbnail {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        h4 {
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+    <div class="row">
+        <div class="col">
+                <h1> Enter values and select Image </h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-1">
+            <p> brightness </p>
+        </div>
+
+        <div class="col-md-4">
+            <p> {{ form.brightness }} </p>
+        </div>
+
+        <div class="col-md-1">
+            <p> contrast </p>
+        </div>
+
+        <div class="col-md-4">
+            <p> {{ form.contrast }} </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p> saturation </p>
+        </div>
+
+        <div class="col-md-4">
+            <p> {{ form.saturation }} </p>
+        </div>
+
+        <div class="col-md-1">
+            <p> hue </p>
+        </div>
+
+        <div class="col-md-4">
+            <p> {{ form.hue }} </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col">
+                <h4> Image: </h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+                <p> {{ form.image }} </p>
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-dark mb-2">Submit</button>
+
+    </form>
+
+{% endblock %}
