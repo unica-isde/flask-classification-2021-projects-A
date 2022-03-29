@@ -9,7 +9,10 @@ from app.forms.classification_form2 import ClassificationForm2
 
 from ml.classification_utils import classify_image,fetch_image
 from config import Configuration
-
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+    
 config = Configuration()
 
 
@@ -54,16 +57,6 @@ def showHistogram():
     form = ClassificationForm2()
     if form.validate_on_submit():  # POST
         image_id = form.image.data
-        
-        redis_url = Configuration.REDIS_URL
-        redis_conn = redis.from_url(redis_url)
-        with Connection(redis_conn):
-            q = Queue(name=Configuration.QUEUE)
-            job = Job.create(classify_image, kwargs={
-                "img_id": image_id
-            })
-            task = q.enqueue_job(job)
-
         histogram_image = plot_png(image_id)
 
         return render_template("show_histogram.html", histogram_image=histogram_image, image_id=image_id, jobID=task.get_id())
@@ -74,9 +67,6 @@ def showHistogram():
 
 
 def plot_png(imageurl):
-    import matplotlib.pyplot as plt
-    import cv2
-    import numpy as np
     image_path = os.path.join(config.image_folder_path, imageurl)
     histo_path =os.path.join(config.histo_folder_path,imageurl)
     # read image
