@@ -9,8 +9,6 @@
             display: block;
             margin: 0 auto;
         }
-
-
     </style>
     <div class="row">
         <div class="col">
@@ -33,6 +31,15 @@
 
 
                 <a class="btn btn-dark" href="/classifications" role="button">Back </a>
+            </div>
+            <div class="card">
+                <a class="btn btn-dark" id="resultBt" href="/download_results/{{ jobID }}" role="button">
+                    Download results</a>
+            </div>
+
+            <div class="card">
+                <a class="btn btn-dark" id="plotBt" href="/download_plot/{{ jobID }}" role="button">
+                    Download plots</a>
             </div>
         </div>
     </div>
