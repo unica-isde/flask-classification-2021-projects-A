@@ -17,3 +17,6 @@ build/
 
 # this should be downloaded during repo setup
 app/static/imagenet_subset
+app/static/histogram_image
+app/static/image_uploads
+app/static/edit_imagenet_subset

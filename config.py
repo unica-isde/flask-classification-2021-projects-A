@@ -8,7 +8,7 @@ class Configuration:
 
     # classification
     image_folder_path = os.path.join(project_root, 'app/static/imagenet_subset')
-    histo_folder_path = os.path.join(project_root, 'app/static/histoimage')
+    histo_folder_path = os.path.join(project_root, 'app/static/histogram_image')
     
     UPLOAD_FOLDER=os.path.join(project_root, 'app/static/image_uploads')
     models = ('resnet18', 'alexnet', 'vgg16', 'inception_v3',)

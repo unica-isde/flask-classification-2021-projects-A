@@ -1,4 +1,5 @@
 from .classifications import *
+from .show_histogram_route import *
 from .classifications_id import *
 from .transformations import *
 from .classifications_upload import *
