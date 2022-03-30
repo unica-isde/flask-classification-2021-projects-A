@@ -29,7 +29,7 @@ def showHistogram():
 
 def plot_png(imageurl):
     image_path = os.path.join(config.image_folder_path, imageurl)
-    histo_path =os.path.join(config.histo_folder_path,imageurl)
+    histo_path =os.path.join(config.histo_folder_path,"histogram_image.png")
     # read image
     im = cv2.imread(image_path)
     # calculate mean value from RGB channels and flatten to 1D array
@@ -40,4 +40,15 @@ def plot_png(imageurl):
     plt.bar(bins[:-1] - 0.5, counts, width=1, edgecolor='none')
     plt.xlim([-0.5, 255.5])
     plt.savefig(histo_path)
-    return imageurl
+    return "histogram_image.png"
+
+
+
+@app.after_request
+def add_header(r):
+    # clear catch so that we can save a lot of space on the hard disk
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
