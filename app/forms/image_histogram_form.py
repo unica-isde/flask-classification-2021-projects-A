@@ -8,6 +8,6 @@ from config import Configuration
 conf = Configuration()
 
 
-class ClassificationForm2(FlaskForm):
+class HistogramForm(FlaskForm):
     image = SelectField('image', choices=list_images(), validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -89,4 +89,3 @@ function makeGraph(results) {
         }
     });
 }
-#ciao
