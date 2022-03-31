@@ -2,12 +2,17 @@ import redis
 from flask import render_template
 from rq import Connection, Queue
 from rq.job import Job
-
+import os
 from app import app
 from app.forms.classification_form import ClassificationForm
+from app.forms.image_histogram_form import HistogramForm
+
 from ml.classification_utils import classify_image
 from config import Configuration
-
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+    
 config = Configuration()
 
 
@@ -38,3 +43,8 @@ def classifications():
     # otherwise, it is a get request and should return the
     # image and model selector
     return render_template('classification_select.html', form=form)
+
+
+
+
+

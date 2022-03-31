@@ -17,11 +17,15 @@ function update(jobId) {
                 case "finished":
                     $('#spinner').hide();
                     $('#waitText').text("");
+                    $('#resultBt').show();
+                    $('#plotBt').show();
                     makeGraph(data['data']);
                     break;
                 case "started":
                     $('#waitText').text("Job started...");
                     $('#spinner').show();
+                    $('#resultBt').hide();
+                    $('#plotBt').hide();
                     setTimeout(function () {
                         update(jobId);
                     }, 1000);
@@ -29,6 +33,8 @@ function update(jobId) {
                 case "queued":
                     $('#waitText').text("Please wait ...");
                     $('#spinner').show();
+                    $('#resultBt').hide();
+                    $('#plotBt').hide();
                     setTimeout(function () {
                         update(jobId);
                     }, 1000);

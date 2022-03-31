@@ -9,12 +9,14 @@
             display: block;
             margin: 0 auto;
         }
+
+
     </style>
     <div class="row">
         <div class="col">
             <div class="card">
                 <img class="large-front-thumbnail"
-                     src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
+                     src="{{ url_for('static', filename='image_uploads/'+image_id) }} "
                      alt={{ image_id }}/>
             </div>
         </div>
@@ -30,22 +32,11 @@
                 </div>
 
 
-                <a class="btn btn-dark" href="/classifications" role="button">Back </a>
-            </div>
-            <div class="card">
-                <a class="btn btn-dark" id="resultBt" href="/download_results/{{ jobID }}" role="button">
-                    Download results</a>
-            </div>
-
-            <div class="card">
-                <a class="btn btn-dark" id="plotBt" href="/download_plot/{{ jobID }}" role="button">
-                    Download plots</a>
+                <a class="btn btn-dark" href="/classifications_image_upload" role="button">Back</a>
             </div>
         </div>
     </div>
     <script src="{{ url_for("static", filename="poll.js") }}" id="polling" jobid={{ jobID }}></script>
 
 {% endblock %}
-
-
 
